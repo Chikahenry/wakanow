@@ -1,0 +1,143 @@
+
+<div class="container py-5  my-5">
+  <div class="">
+    <div class="p-4 pb-5 d-flex justify-content-between table-top">
+      <div class="justify-content-start">
+        <button class="new-btn" [routerLink]="['/signup']"><span class="fw-700 px-2">+</span> Add New User</button>
+      </div>
+      <div class="justify-content-end">
+        <button class="logout-btn" (click)="logout()">Logout</button>
+      </div>
+    </div>
+    <table classs="table table-bordered table-hover table-striped table-dark table-responsive">
+      <thead class="table-head">
+        <tr>
+          <th class="col-1">#</th>
+          <th class="col-1">FIRST NAME</th>
+          <th class="col-1">LASTNAME</th>
+          <th class="col-1">EMAIL</th>
+          <th class="col-1">ROLE</th>
+          <th class="col-1">DATE CREATED</th>
+          <th class="col-1">CREATED BY</th>
+          <th class="col-1"> ACTION </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.id}}</td>
+          <td >{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role == 0 ? "Admin" : "User"}}</td>
+          <td>{{user.dateCreated | date}}</td>
+          <td>{{user.createdBy}}</td>
+          <td class="d-flex justify-content-between">
+              <button class="btn btn-outline-danger" *ngIf="loginUser == user.createdBy" (click)="deleteUser(user)">Delete</button>
+              <button class="btn btn-outline-primary" *ngIf="user.role == 0" (click)="approveUser(user)">Approve</button>
+    <button class="d-none" type="button" id="popModal"  data-toggle="modal" data-target="#exampleModal">sub</button>
+    <button class="btn btn-outline-secondary" *ngIf="loginUser == user.createdBy" (click)="updateUserModal(user)">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="py-2 d-flex justify-content-end table-bottom">
+      <div class="rows">
+        Rows per page 
+        <select class="rows">
+          <option >10</option>
+          <option >20</option>
+          <option >50</option>
+          <option >100</option>
+        </select>
+      </div>
+      <div class="justify-content-end px-4 paginate text-dark rows">
+        <span class="arrow mx-2"> < </span> 1 of 5 <span class="mx-2 arrow"> > </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body modal-dialog" role="document">
+          <div class="">
+            <form [formGroup]="updateForm"
+          class="py-3"
+        >
+        <div
+          class="py-3"
+        >
+          <div class="form-group">
+            <label class="">First Name</label><br>
+            <input 
+              required
+              aria-required="true"
+              type="text"
+              formControlName="firstName"
+              class="input"
+              placeholder="Enter First name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="">Lastname</label><br>
+            <input 
+              required
+              aria-required="true"
+              type="text"
+              formControlName="lastName"
+              class="input"
+              placeholder="Enter Lastname"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="">Email Address</label><br>
+            <input 
+              required
+              aria-required="true"
+              type="text"
+              formControlName="email"
+              class="input"
+              placeholder="Enter Email Address"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="">User Password</label><br>
+            <input
+            type="password" required
+            class="password input"  formControlName="password"
+            placeholder="Enter Password"
+          />
+          </div>
+  
+          <div class="d-flex justify-content-end mt-3">
+            <button type="button" (click)="updateUser()" class="submit-btn">Next
+              <img src="../../../../assets/images/arrow-right.png" >
+            </button>
+          </div>
+        </div>
+      </form>
+          </div>
+    
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>

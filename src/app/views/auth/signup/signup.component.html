@@ -1,0 +1,80 @@
+<div class="">
+  <div class="d-flex justify-content-center">
+    <h1 class="fw-700" style="font-size: 2.7rem;">Register User</h1>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="col-6 ">
+
+      <div class="px-5">
+          
+      </div>
+      <form [formGroup]="signupForm"
+          class="py-3"
+        >
+        <div
+          class="py-3"
+        >
+          <div class="form-group">
+            <label class="">First Name</label><br>
+            <input 
+              required
+              aria-required="true"
+              type="text"
+              formControlName="firstName"
+              class="input"
+              placeholder="Enter First name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="">Lastname</label><br>
+            <input 
+              required
+              aria-required="true"
+              type="text"
+              formControlName="lastName"
+              class="input"
+              placeholder="Enter Lastname"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="">Email Address</label><br>
+            <input 
+              required
+              aria-required="true"
+              type="text"
+              formControlName="email"
+              class="input"
+              placeholder="Enter Email Address"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="">User Password</label><br>
+            <input
+            type="password" required
+            class="password input"  formControlName="password"
+            placeholder="Enter Password"
+          />
+          </div>
+  
+          <div class="d-flex justify-content-end mt-3">
+            <button type="button" (click)="register()" class="submit-btn">Next
+              <img src="../../../../assets/images/arrow-right.png" >
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="py-3 login-footer">
+        <p class="bottom-text">
+          Already have an account? 
+          <span class="register-link pointer" [routerLink]="['/login']"  >Login</span>
+        </p>
+      </div>
+    </div>
+    <button type="button" id="popModal" data-toggle="modal" data-target="#exampleModal" class=" d-none">sub</button>
+
+  </div>
+</div>
