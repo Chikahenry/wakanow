@@ -72,11 +72,4 @@ export class SignupComponent implements OnInit {
     })
   }
 
-  onSubmit() {
-    if (this.signupForm.valid) {
-      // Call signup service to register the user
-    } else {
-      // Handle form errors or display messages
-    }
-  }
 }
